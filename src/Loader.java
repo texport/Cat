@@ -6,6 +6,7 @@ public class Loader
     {
         // Cat1
         Cat cat1 = new Cat();
+        cat1.setCatColor(CatColor.BLACK); // цвет кошки при создании
         System.out.println("");
         System.out.println("Имя кошки " + cat1);
         System.out.println("-----------------------------");

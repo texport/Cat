@@ -1,22 +1,26 @@
 public class Cat
 {
+    // Переменные
     private double originWeight;
     private double weight;
     public static int count;
-    private double minWeight;
-    private double maxWeight;
     private boolean isAlive;
     private double feedCount;
     private String deadMessage = "ДОХЛАЯ КОШКА НЕ МОЖЕТ КУШАТь, ХОДИТЬ В ТУАЛЕТ, МЯУКАТЬ!!!";
+    private CatColor catColor1;
+    // Константы
+    private static final double MIN_WEIGHT = 1000.0;
+    private static final double MAX_WEIGHT = 9000.0;
+
+    private static final int EYE_COUNT = 2;
 
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random(); // устанавливаем начальный вес кошке
         originWeight = weight;
-        minWeight = 1000.0; // минимальный вес кошки
-        maxWeight = 9000.0; // максимальный вес кошки
         feedCount = 0; // счетчик еды для кошки
         isAlive = true; // статус кошки
+        catColor1 = CatColor.NONE; // цвет кошки по умолчанию
         setCatCount(); // при создании объекта кошка считаем ее живой и добовляем в счетчик живых кошек
     }
 
@@ -24,6 +28,12 @@ public class Cat
     public void setCatCount()
     {
         count = count + 1;
+    }
+
+    // Передаем цвет кошки
+    public void setCatColor (CatColor catColor)
+    {
+        catColor1 = catColor;
     }
 
     // Кошка умерла
@@ -56,6 +66,7 @@ public class Cat
         }
     }
 
+    // Кормить кошку
     public void feed(Double amount)
     {
         if (isAlive)
@@ -69,6 +80,7 @@ public class Cat
         }
     }
 
+    // Напоить кошку
     public void drink(Double amount)
     {
         if (isAlive)
@@ -81,6 +93,7 @@ public class Cat
         }
     }
 
+    // Получить вес кошки
     public Double getWeight()
     {
         if (isAlive)
@@ -94,6 +107,7 @@ public class Cat
         return null;
     }
 
+    //
     public Double getCountFeed()
     {
         return feedCount;
@@ -116,11 +130,11 @@ public class Cat
     // Контролируем статус кошки
     public String statusController()
     {
-        if(weight < minWeight) {
+        if(weight < MIN_WEIGHT) {
             isAlive = false;
             return "Dead";
         }
-        else if(weight > maxWeight) {
+        else if(weight > MAX_WEIGHT) {
             isAlive = false;
             return "Exploded";
         }
